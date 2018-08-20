@@ -1,7 +1,5 @@
 package com.example.gpsservice.listener;
 
-import android.location.Location;
-
 import com.example.gpsadapter.bean.FailMessageBean;
 import com.example.gpsadapter.bean.LocationInfo;
 

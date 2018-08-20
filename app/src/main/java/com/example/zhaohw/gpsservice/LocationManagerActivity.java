@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.zhaohw.gpsservice.location.MxLocationManager;
+import com.example.zhaohw.gpsservice.location.LocationFunction;
 
 /**
  * @author zhaohw
@@ -35,13 +35,13 @@ public class LocationManagerActivity extends AppCompatActivity implements View.O
 	@Override
 	protected void onResume() {
 		super.onResume();
-		MxLocationManager.getInstance().registerLocationListener(myLocationListener);
+		LocationFunction.getInstance().registerLocationListener(myLocationListener);
 	}
 	
 	@Override
 	protected void onPause() {
 		super.onPause();
-		MxLocationManager.getInstance().unRegisterLocationListener(myLocationListener);
+		LocationFunction.getInstance().unRegisterLocationListener(myLocationListener);
 	}
 	
 	@Override
@@ -57,7 +57,7 @@ public class LocationManagerActivity extends AppCompatActivity implements View.O
 	
 	private void initLocationListener() {
 		myLocationListener = new MyLocationListener();
-		MxLocationManager.getInstance().init(this, 1000, 0);
+		LocationFunction.getInstance().init(this, 1000, 0);
 	}
 	
 	/**
@@ -69,22 +69,28 @@ public class LocationManagerActivity extends AppCompatActivity implements View.O
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.button: {
-				Location location = MxLocationManager.getInstance().getCurLocation();
-				if (location != null) {
-					String strResult = "getAccuracy:" + location.getAccuracy() + "\r\n"
-							+ "getAltitude:" + location.getAltitude() + "\r\n"
-							+ "getBearing:" + location.getBearing() + "\r\n"
-							+ "getElapsedRealtimeNanos:" + String.valueOf(location.getElapsedRealtimeNanos()) + "\r\n"
-							+ "getLatitude:" + location.getLatitude() + "\r\n"
-							+ "getLongitude:" + location.getLongitude() + "\r\n"
-							+ "getProvider:" + location.getProvider() + "\r\n"
-							+ "getSpeed:" + location.getSpeed() + "\r\n"
-							+ "getTime:" + location.getTime() + "\r\n"
-							+ "count:" + count++ + "\r\n";
-					if (tvGetLocation != null) {
-						tvGetLocation.setText(strResult);
+				LocationFunction.getInstance().getCurLocation(new LocationFunction.ICurrentLocation() {
+					
+					/**
+					 * On current location.
+					 *
+					 * @param location the location
+					 */
+					@Override
+					public void onCurrentLocation(final Location location) {
+						if (location != null) {
+							runOnUiThread(new Runnable() {
+								@Override
+								public void run() {
+									String strResult = "getAccuracy:" + location.getAccuracy() + "\r\n" + "getAltitude:" + location.getAltitude() + "\r\n" + "getBearing:" + location.getBearing() + "\r\n" + "getElapsedRealtimeNanos:" + String.valueOf(location.getElapsedRealtimeNanos()) + "\r\n" + "getLatitude:" + location.getLatitude() + "\r\n" + "getLongitude:" + location.getLongitude() + "\r\n" + "getProvider:" + location.getProvider() + "\r\n" + "getSpeed:" + location.getSpeed() + "\r\n" + "getTime:" + location.getTime() + "\r\n" + "count:" + count++ + "\r\n";
+									if (tvGetLocation != null) {
+										tvGetLocation.setText(strResult);
+									}
+								}
+							});
+						}
 					}
-				}
+				});
 			}
 			break;
 			default:
@@ -92,7 +98,7 @@ public class LocationManagerActivity extends AppCompatActivity implements View.O
 		}
 	}
 	
-	private class MyLocationListener implements MxLocationManager.MxLocationListener {
+	private class MyLocationListener implements LocationFunction.MxLocationListener {
 		
 		/**
 		 * On location changed.
@@ -100,12 +106,18 @@ public class LocationManagerActivity extends AppCompatActivity implements View.O
 		 * @param location the location
 		 */
 		@Override
-		public void onLocationChanged(Location location) {
+		public void onLocationChanged(final Location location) {
 			if (location != null) {
-				String strResult = "getAccuracy:" + location.getAccuracy() + "\r\n" + "getAltitude:" + location.getAltitude() + "\r\n" + "getBearing:" + location.getBearing() + "\r\n" + "getElapsedRealtimeNanos:" + String.valueOf(location.getElapsedRealtimeNanos()) + "\r\n" + "getLatitude:" + location.getLatitude() + "\r\n" + "getLongitude:" + location.getLongitude() + "\r\n" + "getProvider:" + location.getProvider() + "\r\n" + "getSpeed:" + location.getSpeed() + "\r\n" + "getTime:" + location.getTime() + "\r\n";
-				if (tvLocation != null) {
-					tvLocation.setText(strResult);
-				}
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						String strResult = "getAccuracy:" + location.getAccuracy() + "\r\n" + "getAltitude:" + location.getAltitude() + "\r\n" + "getBearing:" + location.getBearing() + "\r\n" + "getElapsedRealtimeNanos:" + String.valueOf(location.getElapsedRealtimeNanos()) + "\r\n" + "getLatitude:" + location.getLatitude() + "\r\n" + "getLongitude:" + location.getLongitude() + "\r\n" + "getProvider:" + location.getProvider() + "\r\n" + "getSpeed:" + location.getSpeed() + "\r\n" + "getTime:" + location.getTime() + "\r\n";
+						if (tvLocation != null) {
+							tvLocation.setText(strResult);
+						}
+					}
+				});
+				
 			}
 		}
 		

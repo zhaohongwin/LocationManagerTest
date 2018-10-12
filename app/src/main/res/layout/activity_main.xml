@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.zhaohw.gpsservice.MainActivity">
+    tools:context="com.example.zhaohw.gpsservice.activity.MainActivity">
 
     <Button
         android:id="@+id/bt_location_manager"
@@ -17,5 +17,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="location service activity" />
+
+    <Button
+        android:id="@+id/bt_net_judge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="net_judge_toast" />
 
 </LinearLayout>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.zhaohw.gpsservice.LocationManagerActivity">
+    tools:context="com.example.zhaohw.gpsservice.activity.LocationManagerActivity">
 
     <TextView
         android:id="@+id/textView"

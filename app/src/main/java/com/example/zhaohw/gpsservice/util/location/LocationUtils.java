@@ -1,4 +1,4 @@
-package com.example.zhaohw.gpsservice.location;
+package com.example.zhaohw.gpsservice.util.location;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -6,7 +6,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.zhaohw.gpsservice.util.ThreadPoolManager;
 
@@ -15,10 +14,10 @@ import java.util.List;
 
 /**
  * The type Location function.
+ * @author zhaohw
  */
-public class LocationFunction {
+public class LocationUtils {
 	private static final String TAG = "MxLocationManager111";
-	private volatile static LocationFunction mxLocationManager;
 	private final long MIN_TIME = 1000;
 	private final float MIN_DISTANCE = 10f;
 	private Context mContext;
@@ -29,22 +28,16 @@ public class LocationFunction {
 	private AndroidLocationListener androidLocationListener;
 	private List<MxLocationListener> mxLocationListeners = new ArrayList<>();
 	
-	private LocationFunction() {
+	private LocationUtils() {
 	
 	}
 	
-	/**
-	 * Gets instance.
-	 *
-	 * @return the instance
-	 */
-	public static LocationFunction getInstance() {
-		if (mxLocationManager == null) {
-			synchronized (LocationFunction.class) {
-				mxLocationManager = new LocationFunction();
-			}
-		}
-		return mxLocationManager;
+	public static LocationUtils getInstance() {
+		return LocationUtils.SingletonHolder.INSTANCE;
+	}
+	
+	private static class SingletonHolder {
+		private static final LocationUtils INSTANCE = new LocationUtils();
 	}
 	
 	/**

@@ -1,4 +1,4 @@
-package com.example.zhaohw.gpsservice;
+package com.example.zhaohw.gpsservice.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,7 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.zhaohw.gpsservice.location.LocationFunction;
+import com.example.zhaohw.gpsservice.R;
+import com.example.zhaohw.gpsservice.util.location.LocationUtils;
 
 /**
  * @author zhaohw
@@ -35,13 +36,13 @@ public class LocationManagerActivity extends AppCompatActivity implements View.O
 	@Override
 	protected void onResume() {
 		super.onResume();
-		LocationFunction.getInstance().registerLocationListener(myLocationListener);
+		LocationUtils.getInstance().registerLocationListener(myLocationListener);
 	}
 	
 	@Override
 	protected void onPause() {
 		super.onPause();
-		LocationFunction.getInstance().unRegisterLocationListener(myLocationListener);
+		LocationUtils.getInstance().unRegisterLocationListener(myLocationListener);
 	}
 	
 	@Override
@@ -57,7 +58,7 @@ public class LocationManagerActivity extends AppCompatActivity implements View.O
 	
 	private void initLocationListener() {
 		myLocationListener = new MyLocationListener();
-		LocationFunction.getInstance().init(this, 1000, 0);
+		LocationUtils.getInstance().init(this, 1000, 0);
 	}
 	
 	/**
@@ -69,28 +70,6 @@ public class LocationManagerActivity extends AppCompatActivity implements View.O
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.button: {
-				LocationFunction.getInstance().getCurLocation(new LocationFunction.ICurrentLocation() {
-					
-					/**
-					 * On current location.
-					 *
-					 * @param location the location
-					 */
-					@Override
-					public void onCurrentLocation(final Location location) {
-						if (location != null) {
-							runOnUiThread(new Runnable() {
-								@Override
-								public void run() {
-									String strResult = "getAccuracy:" + location.getAccuracy() + "\r\n" + "getAltitude:" + location.getAltitude() + "\r\n" + "getBearing:" + location.getBearing() + "\r\n" + "getElapsedRealtimeNanos:" + String.valueOf(location.getElapsedRealtimeNanos()) + "\r\n" + "getLatitude:" + location.getLatitude() + "\r\n" + "getLongitude:" + location.getLongitude() + "\r\n" + "getProvider:" + location.getProvider() + "\r\n" + "getSpeed:" + location.getSpeed() + "\r\n" + "getTime:" + location.getTime() + "\r\n" + "count:" + count++ + "\r\n";
-									if (tvGetLocation != null) {
-										tvGetLocation.setText(strResult);
-									}
-								}
-							});
-						}
-					}
-				});
 			}
 			break;
 			default:
@@ -98,7 +77,7 @@ public class LocationManagerActivity extends AppCompatActivity implements View.O
 		}
 	}
 	
-	private class MyLocationListener implements LocationFunction.MxLocationListener {
+	private class MyLocationListener implements LocationUtils.MxLocationListener {
 		
 		/**
 		 * On location changed.

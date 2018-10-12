@@ -1,4 +1,4 @@
-package com.example.zhaohw.gpsservice;
+package com.example.zhaohw.gpsservice.activity;
 
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.example.zhaohw.gpsservice.R;
 import com.example.zhaohw.gpsservice.util.ThreadPoolManager;
 
 public class LocationServiceActivity extends AppCompatActivity {

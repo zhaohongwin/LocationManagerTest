@@ -11,7 +11,7 @@ import com.example.gpsservice.GpsService;
  * @date 2018/8/9
  */
 
-public class GpsApplication extends Application {
+public class UtilApplication extends Application {
 	
 	@Override
 	public void onCreate() {

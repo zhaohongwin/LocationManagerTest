@@ -4,9 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LocationManagerTest.iml" filepath="$PROJECT_DIR$/LocationManagerTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/clientlib/clientlib.iml" filepath="$PROJECT_DIR$/clientlib/clientlib.iml" />
-      <module fileurl="file://$PROJECT_DIR$/gpsadapter/gpsadapter.iml" filepath="$PROJECT_DIR$/gpsadapter/gpsadapter.iml" />
-      <module fileurl="file://$PROJECT_DIR$/gpsservice/gpsservice.iml" filepath="$PROJECT_DIR$/gpsservice/gpsservice.iml" />
       <module fileurl="file://F:\aswork\GpsService\gpsservice\gpsservice2.iml" filepath="F:\aswork\GpsService\gpsservice\gpsservice2.iml" />
     </modules>
   </component>

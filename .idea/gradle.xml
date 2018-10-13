@@ -9,9 +9,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/clientlib" />
-            <option value="$PROJECT_DIR$/gpsadapter" />
-            <option value="$PROJECT_DIR$/gpsservice" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

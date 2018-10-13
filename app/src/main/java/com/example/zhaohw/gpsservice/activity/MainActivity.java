@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.zhaohw.gpsservice.R;
-import com.example.zhaohw.gpsservice.util.ThreadPoolManager;
 import com.example.zhaohw.gpsservice.util.net.NetworkUtils;
 
 /**
@@ -20,7 +19,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		initService();
 		initView();
 		initReceiver();
 	}
@@ -31,15 +29,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			@Override
 			public void onNetworkState(NetworkUtils.NetState netState, NetworkUtils.NetType type) {
 				Toast.makeText(MainActivity.this, type + (netState == NetworkUtils.NetState.STATE_CONNECTED ? "已连接" : "已断开"), Toast.LENGTH_SHORT).show();
-			}
-		});
-	}
-	
-	private void initService() {
-		ThreadPoolManager.getInstance().addThreadTask(new Runnable() {
-			@Override
-			public void run() {
-				// bind service
 			}
 		});
 	}

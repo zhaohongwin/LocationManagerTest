@@ -1,1 +1,1 @@
-include ':app', ':gpsservice', ':gpsadapter', ':clientlib'
+include ':app'

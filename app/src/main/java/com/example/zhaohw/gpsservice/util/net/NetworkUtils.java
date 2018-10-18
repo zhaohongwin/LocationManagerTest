@@ -20,7 +20,7 @@ public class NetworkUtils {
 	private final String TAG = "NetworkChangedManager";
 	private Context mContext;
 	private NetworkConnectChangedReceiver networkConnectChangedReceiver;
-	private List<INetworkStateListener> networkConnectListeners = new ArrayList<>();
+	private List<INetworkStateListener> networkStateListeners = new ArrayList<>();
 	private volatile NetType netType = NetType.TYPE_UNKNOWN;
 	private volatile NetState netState = NetState.STATE_UNKNOWN;
 	
@@ -49,12 +49,29 @@ public class NetworkUtils {
 		private static final NetworkUtils INSTANCE = new NetworkUtils();
 	}
 	
+	/**
+	 * 初始化
+	 *
+	 * @param context
+	 */
 	public void init(Context context) {
+		if (context == null) {
+			return;
+		}
 		mContext = context;
 		networkConnectChangedReceiver = new NetworkConnectChangedReceiver();
 		IntentFilter filter = new IntentFilter();
 		filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
 		mContext.registerReceiver(networkConnectChangedReceiver, filter);
+	}
+	
+	/**
+	 * 是否已经初始化
+	 *
+	 * @return
+	 */
+	public boolean hasInitial() {
+		return mContext != null;
 	}
 	
 	public void unInit() {
@@ -77,20 +94,30 @@ public class NetworkUtils {
 		NetworkInfo activeNetwork = manager.getActiveNetworkInfo();
 		return (activeNetwork != null && activeNetwork.isAvailable() && activeNetwork.isConnected());
 	}
-	
+
 //	public synchronized boolean hasNetwork() {
 //		return NetState.STATE_CONNECTED == netState;
 //	}
 	
-	public void addNetworkConnectListener(INetworkStateListener listener) {
-		if (listener != null && !networkConnectListeners.contains(listener)) {
-			networkConnectListeners.add(listener);
+	/**
+	 * 添加网络状态监听
+	 *
+	 * @param listener
+	 */
+	public void addNetworkStateListener(INetworkStateListener listener) {
+		if (listener != null && !networkStateListeners.contains(listener)) {
+			networkStateListeners.add(listener);
 		}
 	}
 	
-	public void removeNetworkConnectListener(INetworkStateListener listener) {
-		if (listener != null && networkConnectListeners.contains(listener)) {
-			networkConnectListeners.remove(listener);
+	/**
+	 * 移除网络状态监听
+	 *
+	 * @param listener
+	 */
+	public void removeNetworkStateListener(INetworkStateListener listener) {
+		if (listener != null && networkStateListeners.contains(listener)) {
+			networkStateListeners.remove(listener);
 		}
 	}
 	
@@ -131,7 +158,7 @@ public class NetworkUtils {
 					netState = NetState.STATE_DISCONNECTED;
 				}
 				
-				for (INetworkStateListener listener : networkConnectListeners) {
+				for (INetworkStateListener listener : networkStateListeners) {
 					listener.onNetworkState(netState, netType);
 				}
 			}

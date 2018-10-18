@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	
 	private void initReceiver() {
 		NetworkUtils.getInstance().init(this);
-		NetworkUtils.getInstance().addNetworkConnectListener(new NetworkUtils.INetworkStateListener() {
+		NetworkUtils.getInstance().addNetworkStateListener(new NetworkUtils.INetworkStateListener() {
 			@Override
 			public void onNetworkState(NetworkUtils.NetState netState, NetworkUtils.NetType type) {
 				Toast.makeText(MainActivity.this, type + (netState == NetworkUtils.NetState.STATE_CONNECTED ? "已连接" : "已断开"), Toast.LENGTH_SHORT).show();

@@ -12,7 +12,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewCompat;
 import android.view.View;
 
-import com.example.zhaohw.gpsservice.util.log.LogUtils;
+
+import com.zhaohw.comment.util.log.LogUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;

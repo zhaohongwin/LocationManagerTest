@@ -1,4 +1,4 @@
-package com.zhaohw.comment.util.toast;
+package com.example.zhaohw.gpsservice.toast;
 
 
 import android.content.Context;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zhaohw.gpsservice.R;
+
 
 public class ToastUtils {
 

@@ -7,7 +7,8 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
-import com.example.zhaohw.gpsservice.util.ThreadPoolManager;
+
+import com.zhaohw.comment.util.ThreadPoolManager;
 
 import java.util.ArrayList;
 import java.util.List;

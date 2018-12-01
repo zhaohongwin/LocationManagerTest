@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.zhaohw.gpsservice.R;
-import com.example.zhaohw.gpsservice.util.net.NetworkUtils;
 
 /**
  * @author zhaohw
@@ -24,13 +23,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	}
 	
 	private void initReceiver() {
-		NetworkUtils.getInstance().init(this);
-		NetworkUtils.getInstance().addNetworkStateListener(new NetworkUtils.INetworkStateListener() {
-			@Override
-			public void onNetworkState(NetworkUtils.NetState netState, NetworkUtils.NetType type) {
-				Toast.makeText(MainActivity.this, type + (netState == NetworkUtils.NetState.STATE_CONNECTED ? "已连接" : "已断开"), Toast.LENGTH_SHORT).show();
-			}
-		});
+//		NetworkUtils.getInstance().init(this);
+//		NetworkUtils.getInstance().addNetworkStateListener(new NetworkUtils.INetworkStateListener() {
+//			@Override
+//			public void onNetworkState(NetworkUtils.NetState netState, NetworkUtils.NetType type) {
+//				Toast.makeText(MainActivity.this, type + (netState == NetworkUtils.NetState.STATE_CONNECTED ? "已连接" : "已断开"), Toast.LENGTH_SHORT).show();
+//			}
+//		});
 	}
 	
 	private void initView() {
@@ -56,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			}
 			break;
 			case R.id.bt_net_judge: {
-				Toast.makeText(this, NetworkUtils.getInstance().hasNetwork() ? "有网络" : "无网络", Toast.LENGTH_SHORT).show();
+//				Toast.makeText(this, NetworkUtils.getInstance().hasNetwork() ? "有网络" : "无网络", Toast.LENGTH_SHORT).show();
 			}
 			break;
 			default:

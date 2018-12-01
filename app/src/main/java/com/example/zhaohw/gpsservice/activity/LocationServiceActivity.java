@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.zhaohw.gpsservice.R;
-import com.example.zhaohw.gpsservice.util.ThreadPoolManager;
 
 public class LocationServiceActivity extends AppCompatActivity {
 	TextView tvLocation;
@@ -37,22 +36,22 @@ public class LocationServiceActivity extends AppCompatActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		ThreadPoolManager.getInstance().addThreadTask(new Runnable() {
-			@Override
-			public void run() {
-				registerReceiver(locationReceiver, filter);
-			}
-		});
+//		ThreadPoolManager.getInstance().addThreadTask(new Runnable() {
+//			@Override
+//			public void run() {
+//				registerReceiver(locationReceiver, filter);
+//			}
+//		});
 	}
 	
 	@Override
 	protected void onPause() {
-		ThreadPoolManager.getInstance().addThreadTask(new Runnable() {
-			@Override
-			public void run() {
-				unregisterReceiver(locationReceiver);
-			}
-		});
+//		ThreadPoolManager.getInstance().addThreadTask(new Runnable() {
+//			@Override
+//			public void run() {
+//				unregisterReceiver(locationReceiver);
+//			}
+//		});
 		super.onPause();
 	}
 	

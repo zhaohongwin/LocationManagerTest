@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LocationManagerTest.iml" filepath="$PROJECT_DIR$/LocationManagerTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/commentutils/commentutils.iml" filepath="$PROJECT_DIR$/commentutils/commentutils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/custom/custom.iml" filepath="$PROJECT_DIR$/custom/custom.iml" />
       <module fileurl="file://F:\aswork\GpsService\gpsservice\gpsservice2.iml" filepath="F:\aswork\GpsService\gpsservice\gpsservice2.iml" />
     </modules>
   </component>

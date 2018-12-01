@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.zhaohw.gpsservice.R;
-import com.example.zhaohw.gpsservice.util.location.LocationUtils;
 
 /**
  * @author zhaohw
@@ -17,7 +16,6 @@ import com.example.zhaohw.gpsservice.util.location.LocationUtils;
 public class LocationManagerActivity extends AppCompatActivity implements View.OnClickListener {
 	private TextView tvLocation;
 	private TextView tvGetLocation;
-	private MyLocationListener myLocationListener;
 	private int count = 0;
 	
 	public static void start(Context context) {
@@ -36,13 +34,13 @@ public class LocationManagerActivity extends AppCompatActivity implements View.O
 	@Override
 	protected void onResume() {
 		super.onResume();
-		LocationUtils.getInstance().registerLocationListener(myLocationListener);
+//		LocationUtils.getInstance().registerLocationListener(myLocationListener);
 	}
 	
 	@Override
 	protected void onPause() {
 		super.onPause();
-		LocationUtils.getInstance().unRegisterLocationListener(myLocationListener);
+//		LocationUtils.getInstance().unRegisterLocationListener(myLocationListener);
 	}
 	
 	@Override
@@ -57,8 +55,7 @@ public class LocationManagerActivity extends AppCompatActivity implements View.O
 	}
 	
 	private void initLocationListener() {
-		myLocationListener = new MyLocationListener();
-		LocationUtils.getInstance().init(this, 1000, 0);
+//		LocationUtils.getInstance().init(this, 1000, 0);
 	}
 	
 	/**
@@ -76,60 +73,5 @@ public class LocationManagerActivity extends AppCompatActivity implements View.O
 				break;
 		}
 	}
-	
-	private class MyLocationListener implements LocationUtils.MxLocationListener {
-		
-		/**
-		 * On location changed.
-		 *
-		 * @param location the location
-		 */
-		@Override
-		public void onLocationChanged(final Location location) {
-			if (location != null) {
-				runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						String strResult = "getAccuracy:" + location.getAccuracy() + "\r\n" + "getAltitude:" + location.getAltitude() + "\r\n" + "getBearing:" + location.getBearing() + "\r\n" + "getElapsedRealtimeNanos:" + String.valueOf(location.getElapsedRealtimeNanos()) + "\r\n" + "getLatitude:" + location.getLatitude() + "\r\n" + "getLongitude:" + location.getLongitude() + "\r\n" + "getProvider:" + location.getProvider() + "\r\n" + "getSpeed:" + location.getSpeed() + "\r\n" + "getTime:" + location.getTime() + "\r\n";
-						if (tvLocation != null) {
-							tvLocation.setText(strResult);
-						}
-					}
-				});
-				
-			}
-		}
-		
-		/**
-		 * On status changed.
-		 *
-		 * @param provider the provider
-		 * @param status   the status
-		 * @param extras   the extras
-		 */
-		@Override
-		public void onStatusChanged(String provider, int status, Bundle extras) {
-		
-		}
-		
-		/**
-		 * On provider enabled.
-		 *
-		 * @param provider the provider
-		 */
-		@Override
-		public void onProviderEnabled(String provider) {
-		
-		}
-		
-		/**
-		 * On provider disabled.
-		 *
-		 * @param provider the provider
-		 */
-		@Override
-		public void onProviderDisabled(String provider) {
-		
-		}
-	}
+
 }
